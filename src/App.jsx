@@ -9,28 +9,48 @@ import { useState } from "react";
 
 const App = () => {
   const [practicalToggles, setPracticalToggles] = useState([{ id: 1 }]);
-  const [educationToggles, setEducationToggles] = useState([{ id: 1 }]);
+  const [educationToggles, setEducationToggles] = useState([
+    {
+      id: 1,
+      info: {
+        schoolName: "Example School",
+        studyTitle: "Example Title",
+        dateOfStudy: new Date(),
+      },
+    },
+  ]);
+
+  const addEducationToggle = () => {
+    setEducationToggles((prev) => [
+      ...prev,
+      {
+        id: prev.length + 1 + Date.now(),
+        info: { schoolName: "", studyTitle: "", dateOfStudy: null },
+      },
+    ]);
+  };
+
+  const handleEducationChange = (id, updatedInfo) => {
+    setEducationToggles((prev) =>
+      prev.map((toggle) =>
+        toggle.id === id ? { ...toggle, info: updatedInfo } : toggle
+      )
+    );
+  };
+
+  const deleteEducationToggle = (id) => {
+    setEducationToggles((prev) => prev.filter((toggle) => toggle.id !== id));
+  };
 
   const addPracticalToggle = () => {
-    setPracticalToggles([
-      ...practicalToggles,
-      { id: practicalToggles.length + 1 + Date.now() },
+    setPracticalToggles((prev) => [
+      ...prev,
+      { id: prev.length + 1 + Date.now() },
     ]);
   };
 
   const deletePracticalToggle = (id) => {
-    setPracticalToggles(practicalToggles.filter((toggle) => toggle.id !== id));
-  };
-
-  const addEducationToggle = () => {
-    setEducationToggles([
-      ...educationToggles,
-      { id: educationToggles.length + 1 + Date.now() },
-    ]);
-  };
-
-  const deleteEducationToggle = (id) => {
-    setEducationToggles(educationToggles.filter((toggle) => toggle.id !== id));
+    setPracticalToggles((prev) => prev.filter((toggle) => toggle.id !== id));
   };
 
   const [generalInfo, setGeneralInfo] = useState({
@@ -74,6 +94,8 @@ const App = () => {
               <EducationToggle
                 key={toggle.id}
                 id={toggle.id}
+                educationInfo={toggle.info} // Pass the specific education info
+                onChange={handleEducationChange} // Update handler
                 onDelete={deleteEducationToggle}
                 title="Educational Experience"
               />
@@ -111,7 +133,11 @@ const App = () => {
       </div>
       <div className="ek-main">
         <div className="ek-cv-preview">
-          <CvPreview generalInfo={generalInfo} objectiveText={objectiveText} />
+          <CvPreview
+            generalInfo={generalInfo}
+            objectiveText={objectiveText}
+            educationInfos={educationToggles.map((toggle) => toggle.info)}
+          />
         </div>
       </div>
     </>

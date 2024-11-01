@@ -5,15 +5,15 @@ import CvPracticalExp from "./CvPracticalExp";
 import SectionTitle from "./SectionTitle";
 import CvObjective from "./CvObjective";
 
-const CvPreview = ({ generalInfo, objectiveText }) => {
+const CvPreview = ({ generalInfo, objectiveText, educationInfos = [] }) => {
   return (
     <div>
       <div className="ek-cv-section ek-cv-general-info">
         <CvGeneralInfo
-          name={generalInfo.name}
-          profession={generalInfo.profession}
-          email={generalInfo.email}
-          phone={generalInfo.phone}
+          name={generalInfo?.name || "Your name"}
+          profession={generalInfo?.profession || "Function"}
+          email={generalInfo?.email || "Your Email"}
+          phone={generalInfo?.phone || "Your Phone number"}
         />
       </div>
       <div className="ek-cv-section">
@@ -23,7 +23,18 @@ const CvPreview = ({ generalInfo, objectiveText }) => {
 
       <div className="ek-cv-section">
         <SectionTitle title="Education" />
-        <CvEducationExp />
+        {educationInfos && educationInfos.length > 0 ? (
+          educationInfos.map((educationInfo, index) => (
+            <CvEducationExp
+              key={index}
+              titleStudy={educationInfo?.studyTitle || "Study Titl"}
+              schoolName={educationInfo?.schoolName || "School Name"}
+              dateOfStudy={educationInfo?.dateOfStudy || new Date()}
+            />
+          ))
+        ) : (
+          <p>No education experience provided.</p>
+        )}
       </div>
       <div className="ek-cv-section">
         <SectionTitle title="Practical Experience" />
@@ -45,6 +56,15 @@ CvPreview.propTypes = {
   objectiveText: PropTypes.shape({
     objective: PropTypes.string,
   }),
+
+  educationInfos: PropTypes.arrayOf(
+    // Remplacer `educationInfo` par `educationInfos`
+    PropTypes.shape({
+      schoolName: PropTypes.string,
+      studyTitle: PropTypes.string,
+      dateOfStudy: PropTypes.instanceOf(Date), // Gardez comme instance de Date
+    })
+  ),
 };
 
 export default CvPreview;

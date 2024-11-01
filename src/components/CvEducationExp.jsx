@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const CvEducationExp = ({
   titleStudy = "Title Study",
-  schoolName = "School Name",
+  schoolName = "School Nam",
   dateOfStudy = new Date("2024-10-01"), // Valeur par défaut comme une instance de Date
 }) => {
   // Formatage de la date pour n'afficher que le mois et l'année

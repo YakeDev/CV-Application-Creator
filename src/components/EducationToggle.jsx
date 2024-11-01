@@ -2,11 +2,29 @@ import EducationForm from "./EducationForm";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const EducationToggle = ({ title = "Education Toggle", id, onDelete }) => {
+const EducationToggle = ({
+  title = "Education Toggle",
+  id,
+  onDelete,
+  onChange,
+  educationInfo,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
-    setIsOpen(!isOpen); // Inverser l'état d'ouverture
+    setIsOpen(!isOpen);
+  };
+
+  const handleEducationChange = (event) => {
+    const { name, value } = event.target;
+    const updatedValue = name === "dateOfStudy" ? new Date(value) : value;
+
+    const updatedEducationInfo = {
+      ...educationInfo,
+      [name]: updatedValue,
+    };
+
+    onChange(id, updatedEducationInfo); // Faire remonter les informations à App
   };
 
   return (
@@ -17,7 +35,10 @@ const EducationToggle = ({ title = "Education Toggle", id, onDelete }) => {
       </div>
       {isOpen && (
         <div className="ek-toggle">
-          <EducationForm />
+          <EducationForm
+            educationInfo={educationInfo}
+            onChange={handleEducationChange}
+          />
           <button type="button" onClick={() => onDelete(id)}>
             Delete
           </button>
@@ -31,6 +52,12 @@ EducationToggle.propTypes = {
   title: PropTypes.string,
   id: PropTypes.number,
   onDelete: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  educationInfo: PropTypes.shape({
+    schoolName: PropTypes.string,
+    studyTitle: PropTypes.string,
+    dateOfStudy: PropTypes.instanceOf(Date),
+  }).isRequired,
 };
 
 export default EducationToggle;
