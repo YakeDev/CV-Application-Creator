@@ -3,8 +3,13 @@ import PropTypes from "prop-types";
 const GeneralInfoSection = ({ generalInfo, onChange }) => {
   return (
     <div className="ek-form-containt">
-      <div className="input-container">
-        <label htmlFor="name">Nom</label>
+      <div className="input-container mb-4">
+        <label
+          htmlFor="name"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Nom
+        </label>
         <input
           type="text"
           name="name"
@@ -13,10 +18,16 @@ const GeneralInfoSection = ({ generalInfo, onChange }) => {
           value={generalInfo.name}
           onChange={onChange}
           required
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="input-container">
-        <label htmlFor="profession">Profession</label>
+      <div className="input-container mb-4">
+        <label
+          htmlFor="profession"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Profession
+        </label>
         <input
           type="text"
           name="profession"
@@ -25,10 +36,16 @@ const GeneralInfoSection = ({ generalInfo, onChange }) => {
           value={generalInfo.profession}
           onChange={onChange}
           required
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="input-container">
-        <label htmlFor="email">E-mail</label>
+      <div className="input-container mb-4">
+        <label
+          htmlFor="email"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          E-mail
+        </label>
         <input
           type="email"
           name="email"
@@ -37,10 +54,16 @@ const GeneralInfoSection = ({ generalInfo, onChange }) => {
           value={generalInfo.email}
           onChange={onChange}
           required
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div className="input-container">
-        <label htmlFor="phone">Téléphone</label>
+      <div className="input-container mb-4">
+        <label
+          htmlFor="phone"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Téléphone
+        </label>
         <input
           type="tel"
           name="phone"
@@ -48,6 +71,7 @@ const GeneralInfoSection = ({ generalInfo, onChange }) => {
           placeholder="Votre numéro de téléphone"
           value={generalInfo.phone}
           onChange={onChange}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
     </div>

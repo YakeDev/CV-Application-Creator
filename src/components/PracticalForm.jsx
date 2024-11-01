@@ -4,22 +4,31 @@ const PracticalForm = ({ practicalInfo, onChange }) => {
   return (
     <div>
       <form>
-        <div className="input-container">
-          <label htmlFor="practicle-title">
+        <div className="input-container relative z-0 w-full mb-4 group">
+          <label
+            htmlFor="practicle-title"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
             Title:
-            <input
-              type="text"
-              id="practicle-title"
-              name="practicalTitle"
-              required
-              placeholder="Title"
-              value={practicalInfo.practicalTitle || ""} // Ajout de la liaison
-              onChange={onChange} // Appel du gestionnaire
-            />
           </label>
+          <input
+            type="text"
+            id="practicle-title"
+            name="practicalTitle"
+            required
+            placeholder="Title"
+            value={practicalInfo.practicalTitle || ""} // Ajout de la liaison
+            onChange={onChange} // Appel du gestionnaire
+            className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
         </div>
-        <div className="input-container">
-          <label htmlFor="company">Company:</label>
+        <div className="input-container relative z-0 w-full mb-4 group">
+          <label
+            htmlFor="company"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Company:
+          </label>
           <input
             type="text"
             name="company"
@@ -28,10 +37,16 @@ const PracticalForm = ({ practicalInfo, onChange }) => {
             placeholder="Company"
             value={practicalInfo.company || ""} // Gestion des valeurs vides
             onChange={onChange}
+            className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="input-container">
-          <label htmlFor="location">Location:</label>
+        <div className="input-container relative z-0 w-full mb-4 group">
+          <label
+            htmlFor="location"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Location:
+          </label>
           <input
             type="text"
             name="location"
@@ -40,11 +55,17 @@ const PracticalForm = ({ practicalInfo, onChange }) => {
             placeholder="Location"
             value={practicalInfo.location || ""} // Gestion des valeurs vides
             onChange={onChange}
+            className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="input-container">
-          <label htmlFor="start-date">
-            Start date:
+        <div className="input-container relative z-0 w-full mb-4 group grid grid-cols-2 gap-4">
+          <div className="input-container ">
+            <label
+              htmlFor="start-date"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Start date:
+            </label>
             <input
               type="date"
               name="startDate"
@@ -55,22 +76,29 @@ const PracticalForm = ({ practicalInfo, onChange }) => {
                   : ""
               } // Formater la date
               onChange={onChange}
+              className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
-          </label>
-        </div>
-        <div className="input-container">
-          <label htmlFor="end-date">End date:</label>
-          <input
-            type="date"
-            name="endDate"
-            id="end-date"
-            value={
-              practicalInfo.endDate
-                ? practicalInfo.endDate.toISOString().split("T")[0]
-                : ""
-            } // Formater la date
-            onChange={onChange}
-          />
+          </div>
+          <div className="input-container">
+            <label
+              htmlFor="end-date"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              End date:
+            </label>
+            <input
+              type="date"
+              name="endDate"
+              id="end-date"
+              value={
+                practicalInfo.endDate
+                  ? practicalInfo.endDate.toISOString().split("T")[0]
+                  : ""
+              } // Formater la date
+              onChange={onChange}
+              className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
         </div>
       </form>
     </div>

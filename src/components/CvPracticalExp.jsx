@@ -19,11 +19,11 @@ const CvPracticalExp = ({
   });
 
   return (
-    <div>
-      <p>{practicalTitle}</p>
+    <div className="font-normal text-sm text-slate-500 ps-3 mb-3">
+      <p className="text-slate-600 uppercase font-semibold">{practicalTitle}</p>
       <p>
-        <span>{company}, </span>
-        <span>{location}, </span>
+        <span className="font-medium text-sm">{company}, </span>
+        <span>{location} | </span>
         <span>
           {formattedStartDate} - {formattedEndDate}
         </span>

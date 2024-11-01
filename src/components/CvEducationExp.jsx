@@ -12,10 +12,14 @@ const CvEducationExp = ({
   });
 
   return (
-    <div className="education-experience">
-      <h3>{titleStudy}</h3>
-      <p>{schoolName}</p>
-      <p>{formattedDate}</p> {/* Affichage du mois et de l'année */}
+    <div className="education-experience font-normal text-normal text-slate-500 ps-3 mb-3">
+      <h3 className="font-medium text-slate-600 uppercase text-sm">
+        {titleStudy}
+      </h3>
+      <p className="text-sm">
+        <span className="">{schoolName} | </span>
+        <span>{formattedDate}</span>
+      </p>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const CvObjective = ({ objectiveText = "" }) => {
   return (
-    <div>
+    <div className="font-normal text-sm text-slate-600 ps-3 mb-3">
       {objectiveText ? (
         <p>{objectiveText}</p>
       ) : (

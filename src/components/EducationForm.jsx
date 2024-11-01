@@ -3,9 +3,14 @@ import PropTypes from "prop-types"; // Import PropTypes
 const EducationForm = ({ educationInfo, onChange }) => {
   return (
     <div>
-      <form>
-        <div className="input-container">
-          <label htmlFor="study-title">Title of Study:</label>
+      <form className="max-w-sm mx-auto">
+        <div className="input-container relative z-0 w-full mb-4 group">
+          <label
+            htmlFor="study-title"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Title of Study:
+          </label>
           <input
             id="study-title"
             type="text"
@@ -14,10 +19,16 @@ const EducationForm = ({ educationInfo, onChange }) => {
             placeholder="Title of study"
             value={educationInfo.studyTitle}
             onChange={onChange}
+            className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
-        <div className="input-container">
-          <label htmlFor="school-name">School Name:</label>
+        <div className="input-container relative z-0 w-full mb-4 group">
+          <label
+            htmlFor="school-name"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            School Name:
+          </label>
           <input
             id="school-name"
             type="text"
@@ -26,11 +37,17 @@ const EducationForm = ({ educationInfo, onChange }) => {
             placeholder="School name"
             value={educationInfo.schoolName}
             onChange={onChange}
+            className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
 
-        <div className="input-container">
-          <label htmlFor="date-of-study">Date of Study:</label>
+        <div className="input-container relative z-0 w-full mb-4 group">
+          <label
+            htmlFor="date-of-study"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Date of Study:
+          </label>
           <input
             type="date"
             id="date-of-study"
@@ -41,6 +58,7 @@ const EducationForm = ({ educationInfo, onChange }) => {
                 : ""
             } // Format Date for input
             onChange={onChange}
+            className="bg-gray-50 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
       </form>
