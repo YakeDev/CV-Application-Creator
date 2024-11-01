@@ -4,11 +4,11 @@ import SectionTitle from "./components/SectionTitle";
 import EducationToggle from "./components/EducationToggle";
 import PracticalToggle from "./components/PracticalToggle";
 import CvPreview from "./components/CvPreview";
-import ObjectiveSection from "./components/ObjectiveSection"; // Changed the name to English
+import ObjectiveSection from "./components/ObjectiveSection";
 import { useState } from "react";
 
 const App = () => {
-  const [practicalToggles, setPracticalToggles] = useState([{ id: 1 }]);
+  // Education Toggles
   const [educationToggles, setEducationToggles] = useState([
     {
       id: 1,
@@ -42,17 +42,50 @@ const App = () => {
     setEducationToggles((prev) => prev.filter((toggle) => toggle.id !== id));
   };
 
+  // Practical toggles
+  const [practicalToggles, setPracticalToggles] = useState([
+    {
+      id: 1,
+      info: {
+        // Change 'practicalInfo' to 'info'
+        practicalTitle: "Practical Title",
+        company: "Company Name",
+        location: "Location",
+        startDate: new Date(),
+        endDate: new Date(),
+      },
+    },
+  ]);
+
   const addPracticalToggle = () => {
     setPracticalToggles((prev) => [
       ...prev,
-      { id: prev.length + 1 + Date.now() },
+      {
+        id: prev.length + 1 + Date.now(),
+        info: {
+          practicalTitle: "Practical Title",
+          company: "Company Name",
+          location: "Location",
+          startDate: null,
+          endDate: null,
+        },
+      },
     ]);
+  };
+
+  const handlePracticalChange = (id, updatedInfo) => {
+    setPracticalToggles((prev) =>
+      prev.map((toggle) =>
+        toggle.id === id ? { ...toggle, info: updatedInfo } : toggle
+      )
+    );
   };
 
   const deletePracticalToggle = (id) => {
     setPracticalToggles((prev) => prev.filter((toggle) => toggle.id !== id));
   };
 
+  // General Infos
   const [generalInfo, setGeneralInfo] = useState({
     name: "",
     profession: "",
@@ -60,8 +93,7 @@ const App = () => {
     phone: "",
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = ({ target: { name, value } }) => {
     setGeneralInfo((prevInfo) => ({
       ...prevInfo,
       [name]: value,
@@ -70,8 +102,8 @@ const App = () => {
 
   const [objectiveText, setObjectiveText] = useState({ objective: "" });
 
-  const handleObjectiveChange = (event) => {
-    setObjectiveText({ objective: event.target.value });
+  const handleObjectiveChange = ({ target: { value } }) => {
+    setObjectiveText({ objective: value });
   };
 
   return (
@@ -94,8 +126,8 @@ const App = () => {
               <EducationToggle
                 key={toggle.id}
                 id={toggle.id}
-                educationInfo={toggle.info} // Pass the specific education info
-                onChange={handleEducationChange} // Update handler
+                educationInfo={toggle.info}
+                onChange={handleEducationChange}
                 onDelete={deleteEducationToggle}
                 title="Educational Experience"
               />
@@ -113,7 +145,9 @@ const App = () => {
               <PracticalToggle
                 key={toggle.id}
                 id={toggle.id}
+                practicalInfo={toggle.info} // Correctly pass the practical info
                 onDelete={deletePracticalToggle}
+                onChange={handlePracticalChange}
                 title="Practical Experience"
               />
             ))}
@@ -126,17 +160,19 @@ const App = () => {
         <div className="ek-section">
           <SectionTitle title="Objective" />
           <ObjectiveSection
-            objectiveText={objectiveText} // Pass the dynamic state
-            onChange={handleObjectiveChange} // Pass the update function
+            objectiveText={objectiveText}
+            onChange={handleObjectiveChange}
           />
         </div>
       </div>
+
       <div className="ek-main">
         <div className="ek-cv-preview">
           <CvPreview
             generalInfo={generalInfo}
             objectiveText={objectiveText}
             educationInfos={educationToggles.map((toggle) => toggle.info)}
+            practicalInfos={practicalToggles.map((toggle) => toggle.info)} // Pass correct practical info
           />
         </div>
       </div>

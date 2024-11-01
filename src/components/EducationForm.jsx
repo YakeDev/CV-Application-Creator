@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"; // Import PropTypes
 
 const EducationForm = ({ educationInfo, onChange }) => {
-  // Destructure props
   return (
     <div>
       <form>

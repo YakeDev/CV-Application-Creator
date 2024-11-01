@@ -5,7 +5,12 @@ import CvPracticalExp from "./CvPracticalExp";
 import SectionTitle from "./SectionTitle";
 import CvObjective from "./CvObjective";
 
-const CvPreview = ({ generalInfo, objectiveText, educationInfos = [] }) => {
+const CvPreview = ({
+  generalInfo,
+  objectiveText,
+  educationInfos = [],
+  practicalInfos = [],
+}) => {
   return (
     <div>
       <div className="ek-cv-section ek-cv-general-info">
@@ -23,11 +28,11 @@ const CvPreview = ({ generalInfo, objectiveText, educationInfos = [] }) => {
 
       <div className="ek-cv-section">
         <SectionTitle title="Education" />
-        {educationInfos && educationInfos.length > 0 ? (
+        {educationInfos.length > 0 ? (
           educationInfos.map((educationInfo, index) => (
             <CvEducationExp
               key={index}
-              titleStudy={educationInfo?.studyTitle || "Study Titl"}
+              titleStudy={educationInfo?.studyTitle || "Study Title"}
               schoolName={educationInfo?.schoolName || "School Name"}
               dateOfStudy={educationInfo?.dateOfStudy || new Date()}
             />
@@ -38,7 +43,22 @@ const CvPreview = ({ generalInfo, objectiveText, educationInfos = [] }) => {
       </div>
       <div className="ek-cv-section">
         <SectionTitle title="Practical Experience" />
-        <CvPracticalExp />
+        {practicalInfos.length > 0 ? (
+          practicalInfos.map((practicalInfo, index) => (
+            <CvPracticalExp
+              key={index}
+              practicalTitle={
+                practicalInfo?.practicalTitle || "Practicle Title"
+              }
+              company={practicalInfo?.company || "Company Name"}
+              location={practicalInfo?.location || "Location"}
+              startDate={practicalInfo?.startDate || new Date()}
+              endDate={practicalInfo?.endDate || new Date()}
+            />
+          ))
+        ) : (
+          <p>No practical experience provided.</p>
+        )}
       </div>
     </div>
   );
@@ -58,11 +78,19 @@ CvPreview.propTypes = {
   }),
 
   educationInfos: PropTypes.arrayOf(
-    // Remplacer `educationInfo` par `educationInfos`
     PropTypes.shape({
       schoolName: PropTypes.string,
       studyTitle: PropTypes.string,
-      dateOfStudy: PropTypes.instanceOf(Date), // Gardez comme instance de Date
+      dateOfStudy: PropTypes.instanceOf(Date),
+    })
+  ),
+
+  practicalInfos: PropTypes.arrayOf(
+    PropTypes.shape({
+      company: PropTypes.string,
+      location: PropTypes.string,
+      startDate: PropTypes.instanceOf(Date),
+      endDate: PropTypes.instanceOf(Date),
     })
   ),
 };
