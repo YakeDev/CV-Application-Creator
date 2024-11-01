@@ -1,9 +1,10 @@
-// Composant App
+// App Component
 import GeneralInfoSection from "./components/GeneralInfoSection";
 import SectionTitle from "./components/SectionTitle";
 import EducationToggle from "./components/EducationToggle";
 import PracticalToggle from "./components/PracticalToggle";
 import CvPreview from "./components/CvPreview";
+import ObjectiveSection from "./components/ObjectiveSection"; // Changed the name to English
 import { useState } from "react";
 
 const App = () => {
@@ -33,10 +34,10 @@ const App = () => {
   };
 
   const [generalInfo, setGeneralInfo] = useState({
-    name: "Your Name",
-    profession: "Profession",
-    email: "Your Email",
-    phone: "+243 812 345 678",
+    name: "",
+    profession: "",
+    email: "",
+    phone: "",
   });
 
   const handleInputChange = (e) => {
@@ -47,13 +48,18 @@ const App = () => {
     }));
   };
 
+  const [objectiveText, setObjectiveText] = useState({ objective: "" });
+
+  const handleObjectiveChange = (event) => {
+    setObjectiveText({ objective: event.target.value });
+  };
+
   return (
     <>
       <div className="ek-sidebar">
         <div className="ek-section">
-          <SectionTitle title="Informations Générales" />
+          <SectionTitle title="General Information" />
           <form action="">
-            {/* Passer handleInputChange et generalInfo */}
             <GeneralInfoSection
               generalInfo={generalInfo}
               onChange={handleInputChange}
@@ -62,42 +68,50 @@ const App = () => {
         </div>
 
         <div className="ek-section">
-          <SectionTitle title="Expérience Éducative" />
+          <SectionTitle title="Educational Experience" />
           <div className="ek-education-toggle-container">
             {educationToggles.map((toggle) => (
               <EducationToggle
                 key={toggle.id}
                 id={toggle.id}
                 onDelete={deleteEducationToggle}
-                title="Expérience Éducative"
+                title="Educational Experience"
               />
             ))}
           </div>
           <button type="button" onClick={addEducationToggle}>
-            Ajouter une autre
+            Add another
           </button>
         </div>
 
         <div className="ek-section">
-          <SectionTitle title="Expérience Pratique" />
+          <SectionTitle title="Practical Experience" />
           <div className="ek-practical-toggle-container">
             {practicalToggles.map((toggle) => (
               <PracticalToggle
                 key={toggle.id}
                 id={toggle.id}
                 onDelete={deletePracticalToggle}
-                title="Expérience Pratique"
+                title="Practical Experience"
               />
             ))}
           </div>
           <button type="button" onClick={addPracticalToggle}>
-            Ajouter une autre
+            Add another
           </button>
+        </div>
+
+        <div className="ek-section">
+          <SectionTitle title="Objective" />
+          <ObjectiveSection
+            objectiveText={objectiveText} // Pass the dynamic state
+            onChange={handleObjectiveChange} // Pass the update function
+          />
         </div>
       </div>
       <div className="ek-main">
         <div className="ek-cv-preview">
-          <CvPreview generalInfo={generalInfo} />
+          <CvPreview generalInfo={generalInfo} objectiveText={objectiveText} />
         </div>
       </div>
     </>

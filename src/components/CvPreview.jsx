@@ -3,12 +3,12 @@ import CvEducationExp from "./CvEducationExp";
 import CvGeneralInfo from "./CvGeneralInfo";
 import CvPracticalExp from "./CvPracticalExp";
 import SectionTitle from "./SectionTitle";
-import ObjectifSection from "./ObjectifSection";
+import CvObjective from "./CvObjective";
 
-const CvPreview = ({ generalInfo }) => {
+const CvPreview = ({ generalInfo, objectiveText }) => {
   return (
     <div>
-      <div className="ek-cv-general-info">
+      <div className="ek-cv-section ek-cv-general-info">
         <CvGeneralInfo
           name={generalInfo.name}
           profession={generalInfo.profession}
@@ -16,17 +16,18 @@ const CvPreview = ({ generalInfo }) => {
           phone={generalInfo.phone}
         />
       </div>
-      <div className="ek-cv-education">
+      <div className="ek-cv-section">
+        <SectionTitle title="Objective" />
+        <CvObjective objectiveText={objectiveText?.objective || ""} />
+      </div>
+
+      <div className="ek-cv-section">
         <SectionTitle title="Education" />
         <CvEducationExp />
       </div>
-      <div className="ek-practical">
+      <div className="ek-cv-section">
         <SectionTitle title="Practical Experience" />
         <CvPracticalExp />
-      </div>
-      <div className="ek-objectif">
-        <SectionTitle title="Objective" />
-        <ObjectifSection />
       </div>
     </div>
   );
@@ -40,6 +41,10 @@ CvPreview.propTypes = {
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   }).isRequired,
+
+  objectiveText: PropTypes.shape({
+    objective: PropTypes.string,
+  }),
 };
 
 export default CvPreview;
