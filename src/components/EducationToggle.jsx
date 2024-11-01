@@ -1,8 +1,8 @@
-import PracticalForm from "./PracticalForm";
+import EducationForm from "./EducationForm";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const PracticalToggle = ({ title = "Practical Experience", id, onDelete }) => {
+const EducationToggle = ({ title = "Education Toggle", id, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -15,10 +15,9 @@ const PracticalToggle = ({ title = "Practical Experience", id, onDelete }) => {
         <p>{title}</p>
         <button onClick={handleToggle}>{isOpen ? "x" : "-"}</button>
       </div>
-
       {isOpen && (
         <div className="ek-toggle">
-          <PracticalForm />
+          <EducationForm />
           <button type="button" onClick={() => onDelete(id)}>
             Delete
           </button>
@@ -28,10 +27,10 @@ const PracticalToggle = ({ title = "Practical Experience", id, onDelete }) => {
   );
 };
 
-PracticalToggle.propTypes = {
+EducationToggle.propTypes = {
   title: PropTypes.string,
   id: PropTypes.number,
   onDelete: PropTypes.func.isRequired,
 };
 
-export default PracticalToggle;
+export default EducationToggle;

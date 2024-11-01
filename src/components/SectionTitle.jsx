@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const SectionTitle = ({ title = "Section Title" }) => {
-  return <h2>{title}</h2>;
+  return <h3>{title}</h3>;
 };
 
 SectionTitle.propTypes = {
