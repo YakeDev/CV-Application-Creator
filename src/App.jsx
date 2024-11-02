@@ -7,6 +7,12 @@ import CvPreview from "./components/CvPreview";
 import ObjectiveSection from "./components/ObjectiveSection";
 import { useState } from "react";
 import { BiPlusCircle } from "react-icons/bi";
+import {
+  FaGraduationCap,
+  FaBriefcase,
+  FaBullseye,
+  FaUserTie,
+} from "react-icons/fa6";
 
 const App = () => {
   // Education Toggles
@@ -118,7 +124,7 @@ const App = () => {
     <div className=" grid grid-cols-12 gap-4 p-6 md:h-screen bg-slate-200 mx-auto">
       <div className="ek-sidebar h-full overflow-scroll border col-span-12 w-4/5 md:col-span-5 p-8 bg-white shadow-lg shadow-slate-200 rounded-xl mx-auto">
         <div className="ek-section mb-6 ">
-          <SectionTitle title="General Information" />
+          <SectionTitle title="General Information" icon={FaUserTie} />
           <form action="" className="max-w-sm mx-auto">
             <GeneralInfoSection
               generalInfo={generalInfo}
@@ -128,7 +134,7 @@ const App = () => {
         </div>
 
         <div className="ek-section mb-8 ">
-          <SectionTitle title="Educational Experience" />
+          <SectionTitle title="Educational Experience" icon={FaGraduationCap} />
           <div className="ek-education-toggle-container">
             {educationToggles.map((toggle) => (
               <EducationToggle
@@ -151,7 +157,7 @@ const App = () => {
         </div>
 
         <div className="ek-section mb-8 ">
-          <SectionTitle title="Practical Experience" />
+          <SectionTitle title="Practical Experience" icon={FaBriefcase} />
           <div className="ek-practical-toggle-container">
             {practicalToggles.map((toggle) => (
               <PracticalToggle
@@ -174,7 +180,7 @@ const App = () => {
         </div>
 
         <div className="ek-section mb-8 ">
-          <SectionTitle title="Objective" />
+          <SectionTitle title="Objective" icon={FaBullseye} />
           <ObjectiveSection
             objectiveText={objectiveText}
             onChange={handleObjectiveChange}

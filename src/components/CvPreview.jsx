@@ -4,6 +4,7 @@ import CvGeneralInfo from "./CvGeneralInfo";
 import CvPracticalExp from "./CvPracticalExp";
 import SectionTitle from "./SectionTitle";
 import CvObjective from "./CvObjective";
+import { FaGraduationCap, FaBriefcase, FaBullseye } from "react-icons/fa6";
 
 const CvPreview = ({
   generalInfo,
@@ -13,7 +14,7 @@ const CvPreview = ({
 }) => {
   return (
     <div>
-      <div className="ek-cv-section ek-cv-general-info mb-8 px-16 py-16 bg-slate-100 text-slate-600">
+      <div className="ek-cv-section ek-cv-general-info mb-8 px-14 py-14 bg-slate-100 text-slate-600">
         <CvGeneralInfo
           name={generalInfo?.name || "Your name"}
           profession={generalInfo?.profession || "Function"}
@@ -22,12 +23,12 @@ const CvPreview = ({
         />
       </div>
       <div className="ek-cv-section mb-8 px-16">
-        <SectionTitle title="Objective" />
+        <SectionTitle title="Objective" icon={FaBullseye} />
         <CvObjective objectiveText={objectiveText?.objective || ""} />
       </div>
 
       <div className="ek-cv-section mb-8  px-16">
-        <SectionTitle title="Education" />
+        <SectionTitle title="Education" icon={FaGraduationCap} />
         {educationInfos.length > 0 ? (
           educationInfos.map((educationInfo, index) => (
             <CvEducationExp
@@ -42,7 +43,7 @@ const CvPreview = ({
         )}
       </div>
       <div className="ek-cv-section mb-8 px-16 pb-14">
-        <SectionTitle title="Practical Experience" />
+        <SectionTitle title="Practical Experience" icon={FaBriefcase} />
         {practicalInfos.length > 0 ? (
           practicalInfos.map((practicalInfo, index) => (
             <CvPracticalExp
