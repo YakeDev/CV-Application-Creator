@@ -121,7 +121,7 @@ const App = () => {
   };
 
   return (
-    <div className=" grid grid-cols-12 gap-4 p-6 md:h-screen bg-slate-200 mx-auto">
+    <div className=" grid grid-cols-12 gap-4 p-6 md:h-screen overflow-scroll bg-slate-200 mx-auto">
       <div className="ek-sidebar h-full overflow-scroll border col-span-12 w-4/5 md:col-span-5 p-8 bg-white shadow-lg shadow-slate-200 rounded-xl mx-auto">
         <div className="ek-section mb-6 ">
           <SectionTitle title="General Information" icon={FaUserTie} />
@@ -187,7 +187,7 @@ const App = () => {
           />
         </div>
       </div>
-      <div className="ek-main col-span-12 max-h-full md:col-span-7 border mx-auto overflow-scroll w-4/5 md:w-4/5 bg-white shadow-lg shadow-slate-200 rounded-xl">
+      <div className="ek-main col-span-12 md:col-span-7 border mx-auto overflow-scroll w-4/5 md:w-4/5 bg-white shadow-lg shadow-slate-200 rounded-xl">
         <div className="ek-cv-preview">
           <CvPreview
             generalInfo={generalInfo}

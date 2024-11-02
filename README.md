@@ -2,6 +2,10 @@
 
 The **CV Application Creator** is an interactive web application, built with **React**, that allows users to easily create a CV online. This project, my first in React, is designed for beginners looking to generate a professional CV without needing complex software.
 
+## Screenshot
+
+![Cv app screenshot](./image.png)
+
 ## Features
 
 - **User-friendly input**: Users can enter personal information, professional background, skills, and education.
