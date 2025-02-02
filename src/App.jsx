@@ -1,18 +1,19 @@
 // App Component
-import GeneralInfoSection from './components/GeneralInfoSection';
-import SectionTitle from './components/SectionTitle';
-import EducationToggle from './components/EducationToggle';
-import PracticalToggle from './components/PracticalToggle';
-import CvPreview from './components/CvPreview';
-import ObjectiveSection from './components/ObjectiveSection';
-import { useState } from 'react';
-import { BiPlusCircle } from 'react-icons/bi';
+import GeneralInfoSection from './components/GeneralInfoSection'
+import SectionTitle from './components/SectionTitle'
+import EducationToggle from './components/EducationToggle'
+import PracticalToggle from './components/PracticalToggle'
+import CvPreview from './components/CvPreview'
+import html2pdf from 'html2pdf.js'
+import ObjectiveSection from './components/ObjectiveSection'
+import { useState } from 'react'
+import { BiPlusCircle } from 'react-icons/bi'
 import {
 	FaGraduationCap,
 	FaBriefcase,
 	FaBullseye,
 	FaUserTie,
-} from 'react-icons/fa6';
+} from 'react-icons/fa6'
 
 const App = () => {
 	// Education Toggles
@@ -25,7 +26,7 @@ const App = () => {
 				dateOfStudy: new Date(),
 			},
 		},
-	]);
+	])
 
 	const addEducationToggle = () => {
 		setEducationToggles((prev) => [
@@ -38,20 +39,48 @@ const App = () => {
 					dateOfStudy: null,
 				},
 			},
-		]);
-	};
+		])
+	}
 
 	const handleEducationChange = (id, updatedInfo) => {
 		setEducationToggles((prev) =>
 			prev.map((toggle) =>
 				toggle.id === id ? { ...toggle, info: updatedInfo } : toggle
 			)
-		);
-	};
+		)
+	}
+
+	const handleDownload = () => {
+		const element = document.getElementById('cv-preview')
+		const opt = {
+			margin: [20, 15], // [top/bottom, left/right]
+			filename: 'cv.pdf',
+			image: { type: 'jpeg', quality: 1 },
+			html2canvas: {
+				scale: 3, // Augmente la résolution
+				useCORS: true,
+				logging: true,
+				dpi: 300,
+				letterRendering: true,
+			},
+			jsPDF: {
+				unit: 'mm',
+				format: 'a4',
+				orientation: 'portrait',
+			},
+		}
+
+		// Crée un conteneur temporaire pour contrôler les marges
+		const container = document.createElement('div')
+		container.style.padding = '40px 30px' // Marges internes
+		container.appendChild(element.cloneNode(true))
+
+		html2pdf().set(opt).from(container).save()
+	}
 
 	const deleteEducationToggle = (id) => {
-		setEducationToggles((prev) => prev.filter((toggle) => toggle.id !== id));
-	};
+		setEducationToggles((prev) => prev.filter((toggle) => toggle.id !== id))
+	}
 
 	// Practical toggles
 	const [practicalToggles, setPracticalToggles] = useState([
@@ -66,7 +95,7 @@ const App = () => {
 				endDate: new Date(),
 			},
 		},
-	]);
+	])
 
 	const addPracticalToggle = () => {
 		setPracticalToggles((prev) => [
@@ -81,20 +110,20 @@ const App = () => {
 					endDate: null,
 				},
 			},
-		]);
-	};
+		])
+	}
 
 	const handlePracticalChange = (id, updatedInfo) => {
 		setPracticalToggles((prev) =>
 			prev.map((toggle) =>
 				toggle.id === id ? { ...toggle, info: updatedInfo } : toggle
 			)
-		);
-	};
+		)
+	}
 
 	const deletePracticalToggle = (id) => {
-		setPracticalToggles((prev) => prev.filter((toggle) => toggle.id !== id));
-	};
+		setPracticalToggles((prev) => prev.filter((toggle) => toggle.id !== id))
+	}
 
 	// General Infos
 	const [generalInfo, setGeneralInfo] = useState({
@@ -102,23 +131,23 @@ const App = () => {
 		profession: 'Web Developer / UX Designer',
 		email: 'erickay@gmail.com',
 		phone: '+248 812 345 678',
-	});
+	})
 
 	const handleInputChange = ({ target: { name, value } }) => {
 		setGeneralInfo((prevInfo) => ({
 			...prevInfo,
 			[name]: value,
-		}));
-	};
+		}))
+	}
 
 	const [objectiveText, setObjectiveText] = useState({
 		objective:
 			'Enthusiastic web developer and UX designer with a passion for crafting seamless, user-centered digital experiences. Seeking opportunities to leverage my skills in front-end development and design to contribute to impactful projects.',
-	});
+	})
 
 	const handleObjectiveChange = ({ target: { value } }) => {
-		setObjectiveText({ objective: value });
-	};
+		setObjectiveText({ objective: value })
+	}
 
 	return (
 		<div className='ek-container grid grid-cols-12 gap-4 p-6 md:h-screen overflow-scroll bg-slate-200 mx-auto'>
@@ -184,9 +213,16 @@ const App = () => {
 						onChange={handleObjectiveChange}
 					/>
 				</div>
+				<div className='ek-section mb-8 '>
+					<button
+						onClick={handleDownload}
+						className='ek-download-cv-btn w-full py-3 bg-blue-700 text-white rounded-lg'>
+						Download CV
+					</button>
+				</div>
 			</div>
 			<div className='ek-main col-span-12 md:col-span-7 border mx-auto overflow-scroll w-4/5 md:w-4/5 bg-white shadow-lg shadow-slate-200 rounded-xl'>
-				<div className='ek-cv-preview'>
+				<div className='ek-cv-preview' id='cv-preview'>
 					<CvPreview
 						generalInfo={generalInfo}
 						objectiveText={objectiveText}
@@ -196,7 +232,7 @@ const App = () => {
 				</div>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default App;
+export default App

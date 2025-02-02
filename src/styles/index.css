@@ -8,3 +8,51 @@
 	background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
 	background-size: 10px 10px;
 }
+
+/* Pour le PDF */
+.cv-page {
+	min-height: 297mm; /* Hauteur A4 */
+	width: 210mm; /* Largeur A4 */
+	padding: 10mm 10mm; /* Marges standards */
+	box-sizing: border-box;
+	page-break-after: always;
+}
+
+/* Empêche le découpage des sections entre les pages */
+.cv-section {
+	page-break-inside: avoid;
+}
+
+/* Style de base pour les éléments */
+.cv-content {
+	line-height: 1.6;
+	font-size: 12pt;
+}
+
+/* Gestion des espacements */
+.cv-mb-8 {
+	margin-bottom: 1rem;
+}
+
+/* Header/Footer optionnel */
+.cv-header,
+.cv-footer {
+	height: 20mm;
+	background: #f8f9fa;
+}
+
+@media print {
+	body {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.cv-page {
+		padding: 0;
+		box-shadow: none;
+	}
+
+	.no-print {
+		display: none !important;
+	}
+}
